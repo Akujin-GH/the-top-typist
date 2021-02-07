@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <title>Top Typist</title>
+  <meta property="og:url" content="https://thetoptypist.web.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Top Typist" />
+  <meta property="og:description" content="Compete with other players with your typing skill." />
+  <meta property="og:image" content="img/a.png" />
+  <meta property="fb:app_id" content="161235374512771" />
+  <link rel="icon" href="img/logo.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/93c13d7d91.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,700,800,900|Ubuntu+Mono:400,700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=161235374512771&autoLogAppEvents=1"
+    nonce="WkIVWO2R"></script>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=161235374512771&autoLogAppEvents=1"
+    nonce="zpqAU7ps"></script>
+
+  <div class="wrapper">
+    <header class="masthead">
+      <div id="text-animation">
+        <h2><span id="typed"></span></h2>
+        <img id="TTlogo" src="./img/logo.png" alt="" />
+      </div>
+    </header>
+
+    <aside class="ranking-container">
+      <h2>
+        <img src="img/trophy.png" /> Ranking <img src="img/trophy.png" />
+      </h2>
+
+      <div id="listHeader">
+        <div>Player</div>
+        <div class="tooltip" title="or press Ctrl + Enter">
+          WPM
+        </div>
+      </div>
+
+      <ol id="players">
+
+      </ol>
+    </aside>
+
+    <main class="test-area">
+      <div class="word-error">
+        <div class="wpm">Score: <span>0</span><span>WPM</span></div>
+        <div class="errors">
+          Errors: <span>0</span><sup>+1</sup><span>/</span><span class="chars">0</span>
+        </div>
+        <div class="timer">Timer:<span>1:00</span></div>
+        <button id="restart">Restart</button>
+      </div>
+      <div class="help"><span><button class="far fa-question-circle"></button></span> <span>You have 1 minute to type as
+          many words as you can. The timer
+          starts when you start typing.</span>
+      </div>
+
+      <div id="origText" class="original-text">
+        <p id="textDisplay"></p>
+        <div id="focusClick" title="or press Ctrl + Enter">Click here and start typing.</div>
+        <div id="timesUp">Time's up!</div>
+        <p id="textHide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil officiis quos minus dignissimos veniam, eaque similique eligendi fugit suscipit rem. Omnis delectus reiciendis magni iure modi earum, sapiente totam rerum hic ullam at eum nobis, deserunt et dolorem consectetur laudantium, alias explicabo nulla. Ipsum impedit hic et perferendis qui quam officia sit quis veritatis nisi, eius magnam porro, veniam ullam explicabo rem quo fugiat libero distinctio asperiores ut. Commodi atque quidem nesciunt, deleniti, aspernatur dolore voluptatum dolorum eius velit dolor architecto placeat magni accusantium expedita fuga rerum aliquid vero repellat, nisi eum distinctio excepturi fugiat est. Delectus accusamus animi velit unde inventore at neque fugit blanditiis, incidunt, libero corporis eveniet doloremque, accusantium harum voluptatum dolor sed explicabo atque aperiam quam? Blanditiis cum dolores, consequatur culpa quasi fugit. Reprehenderit dignissimos harum placeat illum!</p>
+        <div id="background" class="background"></div>
+      </div>
+
+      <div id="textArea">
+        <textarea class="disable" name="textarea" id="textInput" autofocus autocomplete="off" autocorrect="off"
+          autocapitalize="off" spellcheck="false" placeholder="Type here!" onkeydown="return isValidKey(event)"
+          disabled></textarea>
+      </div>
+    </main>
+
+    <div id="scoreModal" class="modal">
+      <div class="modal-content">
+        <div class="modalHeader">
+          <div>Your Score:</div>
+          <div id="score">
+            <span>0</span><span class="wpmDesc">words per minute</span>
+          </div>
+
+        </div>
+        <button id="closeModal">OK</button>
+
+      </div>
+
+    </div>
+
+    <aside class="profile">
+      <div class="loginForm">
+        Please <button id="loginButton" class="fa fa-sign-in"> SIGN IN</button> to save your score.
+      </div>
+      <div id="loggedin-account" style="display:none;">
+        <div id="yourAccount">
+          <img id="avatarImg" src="img/defaultuser.png">
+          <div id="userName"></div>
+          <button id="logoutBtn" class="fa fa-sign-out"> <span>SIGN OUT</span></button>
+        </div>
+        <hr id="hrBlue">
+        <div id="yourRankScore">
+          <div id="yourScore">
+            <div><span id="highestScore">0</span><span>WPM</span></div>
+
+            <div id="highScoreDesc">Your highest score</div>
+          </div>
+          <hr>
+          <div id="yourRank">
+            <div><span id="currentRank">?</span></div>
+
+            <div>Your current rank</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your share button code -->
+      <div class="sharefb"><span id="typed4"></span></div>
+      <div class="fb-share-button" data-href="https://thetoptypist.web.app/" data-layout="button_count"
+        data-size="small"><a title="or press Ctrl + Enter" target="_blank"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthetoptypist.web.app%2F&amp;src=sdkpreparse"
+          class="fb-xfbml-parse-ignore">Share</a>
+      </div>
+
+    </aside>
+
+    <!-- Login Form -->
+    <div id="signinModal" style="display: none;">
+      <div id="login-box">
+        <span class="closeBtn">&times;</span>
+
+        <div class="right-col">
+          <h3>Sign in with</h3>
+          <button id="googleSignin" class="social-signin google fa fa-google-plus"> Google</button>
+          <button id="facebookSignin" class="social-signin facebook fa fa-facebook" onclick="facebookSignin()">
+            Facebook</button>
+          <!-- <button id="githubSignin" class="social-signin github fa fa-github" onclick="githubSignin()"> Github</button> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- signout modal -->
+    <div class="signoutModal">
+      <div class="signoutContent">
+        <h1>Sign Out</h1>
+        <p>Are you sure you want to sign out?</p>
+
+        <div class="clearfix">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <button type="button" class="yesbtn">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- warning for cheating -->
+    <div class="userWarning">
+      <div class="warningContent">
+        <h1>Detected cheating!</h1>
+        <p>Are you sure you're not a robot? Becuase you're typing too fast for a human.</p>
+        <i>This App will automatically refresh in 7 seconds or refresh it now.</i>
+
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2020 Top Typist</p>
+    </footer>
+  </div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+  <script src="js/auth.js" async></script>
+  <script src="js/typed.min.js"></script>
+  <script src="js/app.js" async></script>
+</body>
+
+</html>
